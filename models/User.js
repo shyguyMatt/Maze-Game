@@ -25,7 +25,15 @@ User.init(
                 model: 'highscore',
                 key: 'id',
             }
-        }
+        },
+        location_x: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
+        location_y: {
+            type: DataTypes.INTEGER,
+            allownull: true,
+        },
     },
     {
         sequelize,
