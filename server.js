@@ -15,10 +15,16 @@ const sess = {
   })
 };
 
+const exphbs = require('express-handlebars');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(session(sess));
+
+// Inform Express.js which template engine we're using
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
