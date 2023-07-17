@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Map, User, Highscore} = require('../models')
+const { Map, User, Highscore} = require('../../models')
 
 // import databases
 
