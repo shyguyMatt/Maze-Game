@@ -19,13 +19,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        score_id: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'highscore',
-                key: 'id',
-            }
-        },
+
         location_x: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -34,6 +28,14 @@ User.init(
             type: DataTypes.INTEGER,
             allownull: true,
         },
+        // score_id: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        //     references: {
+        //         model: 'highscore',
+        //         key: 'id',
+        //     }
+        // },
     },
     {
         sequelize,
