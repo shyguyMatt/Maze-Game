@@ -1,8 +1,10 @@
 const sequelize = require('../config/connection');
-const { User, Project } = require('../');
+const { User, Highscore, Map } = require('../models');
+
 
 const userData = require('../seeds/userData.json');
-const projectData = require('../seeds/projectData.json');
+const highScoreData = require('../seeds/highScoreData.json');
+const mapData = require('../seeds/mapData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -12,10 +14,15 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  for (const project of projectData) {
-    await Project.create({
-      ...project,
+  for (const highScore of highScoreData) {
+    await Highscore.create({
+      ...highScore,
       user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+  }
+  for (const { id } of mapData) {
+    const maps = await Map.create({
+      reader_id: id,
     });
   }
 
@@ -23,3 +30,4 @@ const seedDatabase = async () => {
 };
 
 seedDatabase();
+
