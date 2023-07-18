@@ -19,7 +19,7 @@ const seedDatabase = async () => {
 
   await Tile.bulkCreate(tileData, {
     individualHooks: true,
-    returning: true
+    returning: true,
   });
 
   process.exit(0);
