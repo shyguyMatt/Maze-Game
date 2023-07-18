@@ -35,13 +35,23 @@ User.init(
                 len: [8],
             },
         },
-        score_id: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'highscore',
-                key: 'id',
-            }
-        }
+
+        location_x: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
+        location_y: {
+            type: DataTypes.INTEGER,
+            allownull: true,
+        },
+        // score_id: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        //     references: {
+        //         model: 'highscore',
+        //         key: 'id',
+        //     }
+        // },
     },
     {
         hooks: {
