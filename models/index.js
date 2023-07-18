@@ -24,4 +24,4 @@ Tile.belongsTo(Map, {
 //     onDelete: 'CASCADE',
 // })
 
-module.exports = { User, Map, Highscore }
+module.exports = { User, Map, Highscore, Tile }
