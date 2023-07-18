@@ -2,14 +2,13 @@ const router = require('express').Router();
 const { Map, User, Highscore} = require('../../models')
 
 // import databases
-
 router.get('/test', async (req, res) => {
-    res.json('api routes test success!')
-});
+    res.json('api test successful')
+})
 
-router.post('/goNorth/:id', async (req, res) => {
+router.post('/goNorth/', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.params.id)
+        const userData = await User.findByPk(req.session.user_id)
         const newUserLocation = userData.location_y + 1
 
         userData.update(({ location_y: newUserLocation}))
@@ -19,9 +18,9 @@ router.post('/goNorth/:id', async (req, res) => {
     }
 });
 
-router.post('/goEast/:id', async (req, res) => {
+router.post('/goEast/', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.params.id)
+        const userData = await User.findByPk(req.session.user_id)
         const newUserLocation = userData.location_x + 1
 
         userData.update(({ location_x: newUserLocation}))
@@ -31,9 +30,9 @@ router.post('/goEast/:id', async (req, res) => {
     }
 });
 
-router.post('/goSouth/:id', async (req, res) => {
+router.post('/goSouth/', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.params.id)
+        const userData = await User.findByPk(req.session.user_id)
         const newUserLocation = userData.location_y - 1
 
         userData.update(({ location_y: newUserLocation}))
@@ -43,9 +42,9 @@ router.post('/goSouth/:id', async (req, res) => {
     }
 });
 
-router.post('/goWest/:id', async (req, res) => {
+router.post('/goWest/', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.params.id)
+        const userData = await User.findByPk(req.session.user_id)
         const newUserLocation = userData.location_x - 1
 
         userData.update(({ location_x: newUserLocation}))
@@ -55,9 +54,9 @@ router.post('/goWest/:id', async (req, res) => {
     }
 });
 
-router.get('/getUsers', async (req, res) => {
-    const userData = await User.findAll()
-    res.json(userData)
-})
+router.get('/user', async (req, res) => {
+    const userData = await User.findByPk(req.session.user_id)
+    res.json(userData);
+});
 
 module.exports = router;
