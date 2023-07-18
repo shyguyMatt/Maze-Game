@@ -1,0 +1,83 @@
+[
+    {
+        "map_id": "1",
+        "x": 1,
+        "y": 1,
+        "north": true,
+        "east": true,
+        "south": false,
+        "west": false
+    },
+    {
+        "map_id": "1",
+        "x": 2,
+        "y": 1,
+        "north": true,
+        "east": true,
+        "south": false,
+        "west": true
+    },
+    {
+        "map_id": "1",
+        "x": 3,
+        "y": 1,
+        "north": true,
+        "east": true,
+        "south": false,
+        "west": false
+    },
+    {
+        "map_id": "1",
+        "x": 1,
+        "y": 2,
+        "north": true,
+        "east": true,
+        "south": true,
+        "west": false
+    },
+    {
+        "map_id": "1",
+        "x": 2,
+        "y": 2,
+        "north": true,
+        "east": true,
+        "south": true,
+        "west": true
+    },
+    {
+        "map_id": "1",
+        "x": 3,
+        "y": 2,
+        "north": true,
+        "east": false,
+        "south": true,
+        "west": true
+    },
+    {
+        "map_id": "1",
+        "x": 1,
+        "y": 3,
+        "north": false,
+        "east": true,
+        "south": true,
+        "west": false
+    },
+    {
+        "map_id": "1",
+        "x": 2,
+        "y": 3,
+        "north": false,
+        "east": true,
+        "south": true,
+        "west": true
+    },
+    {
+        "map_id": "1",
+        "x": 3,
+        "y": 3,
+        "north": false,
+        "east": false,
+        "south": true,
+        "west": true
+    }
+]

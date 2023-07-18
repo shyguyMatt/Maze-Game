@@ -1,15 +1,25 @@
 const sequelize = require('../config/connection');
-
-const { User, Highscore, Map } = require('../models');
+const { User, Map, Tile, Highscore } = require('../models');
 
 const userData = require('../seeds/userData.json');
-const highScoreData = require('../seeds/highScoreData.json');
 const mapData = require('../seeds/mapData.json');
+const tileData = require('../seeds/tileData.json');
+const highScoreData = require('../seeds/highScoreData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
   await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  await Map.bulkCreate(mapData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  await Tile.bulkCreate(tileData, {
     individualHooks: true,
     returning: true,
   });
