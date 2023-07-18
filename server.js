@@ -20,6 +20,7 @@ const exphbs = require('express-handlebars');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const hbs = exphbs.create({});
 app.use(session(sess));
 
 // Inform Express.js which template engine we're using
