@@ -44,6 +44,10 @@ User.init(
             type: DataTypes.INTEGER,
             allownull: true,
         },
+        map: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         // score_id: {
         //     type: DataTypes.STRING,
         //     allowNull: true,

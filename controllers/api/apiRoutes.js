@@ -17,57 +17,81 @@ router.get('/getmaps', async (req, res) => {
     }
 });
 
-router.post('/goNorth/', async (req, res) => {
+router.post('/goNorth', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+        const tile = await Map.findOne({ 
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
         const newUserLocation = userData.location_y + 1
 
         userData.update(({ location_y: newUserLocation}))
-        res.json(userData);
+        res.json(tile);
     } catch (err) {
         res.json(err);
     }
 });
 
-router.post('/goEast/', async (req, res) => {
+router.post('/goEast', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+        const tile = await Map.findOne({ 
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
         const newUserLocation = userData.location_x + 1
 
         userData.update(({ location_x: newUserLocation}))
-        res.json(userData);
+        res.json(tile);
     } catch (err) {
         res.json(err);
     }
 });
 
-router.post('/goSouth/', async (req, res) => {
+router.post('/goSouth', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+        const tile = await Map.findOne({ 
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
         const newUserLocation = userData.location_y - 1
 
         userData.update(({ location_y: newUserLocation}))
-        res.json(userData);
+        res.json(tile);
     } catch (err) {
         res.json(err);
     }
 });
 
-router.post('/goWest/', async (req, res) => {
+router.post('/goWest', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+        const tile = await Map.findOne({ 
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
         const newUserLocation = userData.location_x - 1
 
         userData.update(({ location_x: newUserLocation}))
-        res.json(userData);
+        res.json(tile);
     } catch (err) {
         res.json(err);
     }
 });
 
-router.get('/user', async (req, res) => {
-    const userData = await User.findByPk(req.session.user_id)
-    res.json(userData);
-});
+router.post('/goToMap/:id', async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.session.user_id)
+        
+        userData.update(({ location_x: 1 }))
+        userData.update(({ location_y: 1 }))
+        userData.update(({ map: req.params.id }))
+        res.json(userData)
+    } catch (err) {
+        res.json(err);
+    }
+})
 
 module.exports = router;
