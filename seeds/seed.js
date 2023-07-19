@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Map, Tile, Highscore } = require('../models');
+const { User, Map, Highscore, Tile } = require('../models');
 
 const userData = require('../seeds/userData.json');
 const mapData = require('../seeds/mapData.json');

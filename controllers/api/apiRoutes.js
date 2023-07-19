@@ -1,10 +1,21 @@
 const router = require('express').Router();
-const { Map, User, Highscore} = require('../../models')
+const { Map, User, Highscore, Tile} = require('../../models');
 
 // import databases
 router.get('/test', async (req, res) => {
     res.json('api test successful')
 })
+
+router.get('/getmaps', async (req, res) => {
+    try {
+        const mapData = await Map.findAll({
+            include: [{model: Tile}]
+        });
+        res.json(mapData);
+    } catch (err) {
+        res.json(err)
+    }
+});
 
 router.post('/goNorth/', async (req, res) => {
     try {

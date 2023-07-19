@@ -5,13 +5,19 @@ class Tile extends Model {}
 
 Tile.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         map_id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
-            references: {
-                model: 'map',
-                key: 'id',
-            },
+            // references: {
+            //     model: 'map',
+            //     key: 'id',
+            // },
+            allowNull: false,
         },
         x: {
             type: DataTypes.INTEGER,
@@ -43,7 +49,7 @@ Tile.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'map'
+        modelName: 'tile'
     }
 )
 
