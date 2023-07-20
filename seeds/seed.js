@@ -24,6 +24,11 @@ const seedDatabase = async () => {
     returning: true,
   });
 
+  await Highscore.bulkCreate(highScoreData, {
+    individualHooks: true,
+    returning: true,
+  });
+
   process.exit(0);
 };
 

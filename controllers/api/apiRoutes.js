@@ -9,7 +9,7 @@ router.get('/test', async (req, res) => {
 router.get('/getmaps', async (req, res) => {
     try {
         const mapData = await Map.findAll({
-            include: [{model: Tile}]
+            include: [{model: Tile}, {model: Highscore, include: { model: User, attributes: ['user_name']}}]
         });
         res.json(mapData);
     } catch (err) {

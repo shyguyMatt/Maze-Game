@@ -13,10 +13,10 @@ Tile.init(
         },
         map_id: {
             type: DataTypes.INTEGER,
-            // references: {
-            //     model: 'map',
-            //     key: 'id',
-            // },
+            references: {
+                model: 'map',
+                key: 'id',
+            },
             allowNull: false,
         },
         x: {

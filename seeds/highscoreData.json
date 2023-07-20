@@ -1,18 +1,18 @@
 [
   {
-    "initial": "AGB",
-    "time-taken": "30 seconds",
-    "points-scored": 9999
+    "score": 20.87,
+    "map_id": 1,
+    "user_id": 1
   },
   {
-    "initial": "MH",
-    "time-taken": "45 seconds",
-    "points-scored": 3542
+    "score": 44.94,
+    "map_id": 1,
+    "user_id": 1
   },
   {
-    "initial": "MF",
-    "time-taken": "60 seconds",
-    "points-scored": 4723
+    "score": 10.15,
+    "map_id": 1,
+    "user_id": 1
   }
 ]
 

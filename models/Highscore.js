@@ -15,13 +15,20 @@ Highscore.init(
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        // user_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: 'user',
-        //         key: 'id',
-        //     },
-        // }
+        map_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'map',
+                key: 'id',
+            },
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            },
+        },
     },
     {
         sequelize,
