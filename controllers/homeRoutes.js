@@ -9,4 +9,11 @@ router.get('/', async (req, res) => {
     res.render('login');
   });
 
+
+  router.get('/roomOne', async (req, res) => {
+    // Send the rendered Handlebars.js template back as the response
+    res.render('roomOne');
+  });
+
+
 module.exports = router;
