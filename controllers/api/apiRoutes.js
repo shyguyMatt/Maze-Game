@@ -20,30 +20,53 @@ router.get('/getmaps', async (req, res) => {
 router.post('/goNorth', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+
         const tile = await Map.findOne({ 
             where: { id: userData.map },
             include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
         })
-        const newUserLocation = userData.location_y + 1
 
-        userData.update(({ location_y: newUserLocation}))
-        res.json(tile);
+        if (!tile.tiles[0].north) {
+            res.json('You cannot go in that direction!');
+            return;
+        }
+
+        userData.location_y++;
+        await userData.save();
+        const newTile = await Map.findOne({
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
+
+        res.json(newTile);
     } catch (err) {
-        res.json(err);
+        res.json('this is an error');
     }
 });
 
 router.post('/goEast', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+
         const tile = await Map.findOne({ 
             where: { id: userData.map },
             include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
         })
-        const newUserLocation = userData.location_x + 1
 
-        userData.update(({ location_x: newUserLocation}))
-        res.json(tile);
+        if (!tile.tiles[0].east) {
+            res.json({ message: 'You cannot go in that direction!' });
+            return;           
+        }
+
+        userData.location_x++;
+        await userData.save();
+
+        const newTile = await Map.findOne({
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
+
+        res.json(newTile);     
     } catch (err) {
         res.json(err);
     }
@@ -52,14 +75,26 @@ router.post('/goEast', async (req, res) => {
 router.post('/goSouth', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+
         const tile = await Map.findOne({ 
             where: { id: userData.map },
             include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
         })
-        const newUserLocation = userData.location_y - 1
 
-        userData.update(({ location_y: newUserLocation}))
-        res.json(tile);
+        if (!tile.tiles[0].south) {
+            res.json({ message: 'You cannot go in that direction!' });
+            return;           
+        }
+
+        userData.location_y--;
+        await userData.save();
+
+        const newTile = await Map.findOne({
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
+
+        res.json(newTile); 
     } catch (err) {
         res.json(err);
     }
@@ -68,14 +103,26 @@ router.post('/goSouth', async (req, res) => {
 router.post('/goWest', async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id)
+
         const tile = await Map.findOne({ 
             where: { id: userData.map },
             include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
         })
-        const newUserLocation = userData.location_x - 1
 
-        userData.update(({ location_x: newUserLocation}))
-        res.json(tile);
+        if (!tile.tiles[0].west) {
+            res.json({ message: 'You cannot go in that direction!' });
+            return;            
+        }
+
+        userData.location_x--;
+        await userData.save();
+
+        const newTile = await Map.findOne({
+            where: { id: userData.map },
+            include: {model: Tile, where: { x: userData.location_x, y: userData.location_y }}
+        })
+
+        res.json(newTile);
     } catch (err) {
         res.json(err);
     }
