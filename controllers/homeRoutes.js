@@ -33,4 +33,10 @@ router.get('/highscores/:id', async (req, res) => {
 
 });
 
+  router.get('/roomOne', async (req, res) => {
+    // Send the rendered Handlebars.js template back as the response
+    res.render('roomOne');
+  });
+
+
 module.exports = router;
