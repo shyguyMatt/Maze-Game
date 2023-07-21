@@ -44,14 +44,10 @@ User.init(
             type: DataTypes.INTEGER,
             allownull: true,
         },
-        // score_id: {
-        //     type: DataTypes.STRING,
-        //     allowNull: true,
-        //     references: {
-        //         model: 'highscore',
-        //         key: 'id',
-        //     }
-        // },
+        map: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
     },
     {
         hooks: {
@@ -62,7 +58,7 @@ User.init(
         },
         sequelize,
         timestamps: true,
-        freezeTableName: false,
+        freezeTableName: true,
         underscored: true,
         modelName: 'user'
     }

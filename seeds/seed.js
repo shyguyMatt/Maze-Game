@@ -1,29 +1,34 @@
-const sequelize = require("../config/connection");
-const { User, Highscore, Map } = require("../models");
+const sequelize = require('../config/connection');
+const { User, Map, Highscore, Tile } = require('../models');
 
-const userData = require("../seeds/userData.json");
-const highScoreData = require("../seeds/highScoreData.json");
-const mapData = require("../seeds/mapData.json");
+const userData = require('../seeds/userData.json');
+const mapData = require('../seeds/mapData.json');
+const tileData = require('../seeds/tileData.json');
+const highScoreData = require('../seeds/highScoreData.json');
+
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
+  await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
 
-  for (const highScore of highScoreData) {
-    await Highscore.create({
-      ...highScore,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
-  for (const { id } of mapData) {
-    const maps = await Map.create({
-      reader_id: id,
-    });
-  }
+  await Map.bulkCreate(mapData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  await Tile.bulkCreate(tileData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  await Highscore.bulkCreate(highScoreData, {
+    individualHooks: true,
+    returning: true,
+  });
 
   process.exit(0);
 };
