@@ -8,5 +8,10 @@
         "name": "maze_2",
         "xstart": 1,
         "ystart": 1
+    },
+    {
+        "name": "maze_3",
+        "xstart": 1,
+        "ystart": 1
     }
 ]

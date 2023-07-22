@@ -1,31 +1,39 @@
-
-   <h1 class="title">High Scores</h1>
-<div class="container.is-max-desktop is-flex is-flex-direction-row is-align-items-center is-justify-content-center">
-      <div class="card">
-        <figure>
-           <img src="https://bulma.io/images/placeholders/256x256.png">
-        </figure>
-      </div>
-    <div class="box m-5">
-        <ol>
-            <h2>Map 1</h2>
-            <li>{user}{time}</li>
-            <hr>
-             <li>{user}{time}</li>
-             <hr>
-              <li>{user}{time}</li>
-              <hr>
-            <li>Mathew  Time: 1:20</li>
-            <hr>
-            <li>Michael Time: 1:30</li>
-            <hr>
-            <li>Anthony Time: 1:40</li>
-            <hr>
-            <li>Jessica Time: 1:50</li>
-            <hr>
-        </ol>
+<section class="hero">
+    <div class="hero-body">
+        <h1 class="title is-2">High Scores</h1>
+        <h2 class="subtitle is-4">Maze 1</h2>        
     </div>
-    <div class="box m-5">
+</section>
+
+<div class="container.is-max-desktop is-flex is-flex-direction-row is-align-items-center is-justify-content-center">
+
+    <div class="column"></div>
+    <div class="column is-two-thirds">
+        <div class="box">
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each highscores as |score|}}
+                    <tr>
+                        <td>
+                            {{score.user.user_name}}
+                        </td>
+                        <td>
+                            {{score.score}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="column"></div>
+    {{!-- <div class="box m-5">
         <ol>
             <h2>Map 2</h2>
             <li>{user}{time}</li>
@@ -43,10 +51,10 @@
             <li>Jessica Time: 1:50</li>
             <hr>
         </ol>
-    </div>
-    <div class="card">
+    </div> --}}
+    {{!-- <div class="card">
         <figure>
            <img src="https://bulma.io/images/placeholders/256x256.png">
         </figure>
-    </div>
+    </div> --}}
 </div>
