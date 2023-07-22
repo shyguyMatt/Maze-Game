@@ -35,19 +35,6 @@ User.init(
                 len: [8],
             },
         },
-
-        location_x: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        },
-        location_y: {
-            type: DataTypes.INTEGER,
-            allownull: true,
-        },
-        map: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
     },
     {
         hooks: {
