@@ -24,8 +24,9 @@ router.get('/highscores/:id', async (req, res) => {
     })
 
     // map highscores and send them to highscores.handlebars template
-    const highscores = scoreData.map((score) => score.get({plain: true}));
-    res.render('highscores', { highscores })  
+    const highscores = scoreData.highscores.map((score) => score.get({plain: true}));
+    // res.json(highscores)
+    res.render('highScore', { highscores })  
 
   } catch (err) {
     res.json(err);
