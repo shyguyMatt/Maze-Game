@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const Highscore = require('../models/Highscore');
 const Map = require('../models/Map');
 const User = require('../models/User');
@@ -20,8 +21,9 @@ router.get('/highscores/:id', async (req, res) => {
     // include highscores along with their owners
     const scoreData = await Map.findOne({ 
       where: { id: req.params.id },
-      include: {model: Highscore, include: { model: User, attributes: ['user_name']}}
-    })
+      include: {model: Highscore, include: { model: User, attributes: ['user_name']}},
+      order: sequelize.literal('score ASC')
+    });
 
     // map highscores and send them to highscores.handlebars template
     const highscores = scoreData.highscores.map((score) => score.get({plain: true}));
@@ -41,7 +43,15 @@ router.get('/roomOne', async (req, res) => {
 
   router.get('/enterGame', async (req, res) => {
     // Send the rendered Handlebars.js template back as the response
-    res.render('enterGame');
+    try {
+      const mapData = await Map.findAll()
+
+      const maps = mapData.map((map) => map.get({plain: true}));
+      res.render('enterGame', { maps })
+    } catch (err) {
+      res.json(err)
+    }
+    // res.render('enterGame');
   });
 
   router.get('/highScore', async (req, res) => {
