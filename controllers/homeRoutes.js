@@ -3,40 +3,40 @@ const Highscore = require('../models/Highscore');
 const Map = require('../models/Map');
 const User = require('../models/User');
 
-router.get('/test', async (req, res) => {
-    res.json('homeroutes test success!')
-})
-
+// Send the rendered Handlebars.js template back as the response
 router.get('/', async (req, res) => {
-    // Send the rendered Handlebars.js template back as the response
     res.render('login');
   });
 
+// Send the rendered signup.handlebars template back as the response
 router.get('/signup', async (req, res) => {
-  // Send the rendered signup.handlebars template back as the response
   res.render('signup')
 });
 
+// Send the highscores for specific map id
 router.get('/highscores/:id', async (req, res) => {
-  // Send the highscores for specific map id
   try {
+    // find map by its id
+    // include highscores along with their owners
     const scoreData = await Map.findOne({ 
       where: { id: req.params.id },
       include: {model: Highscore, include: { model: User, attributes: ['user_name']}}
     })
 
+    // map highscores and send them to highscores.handlebars template
     const highscores = scoreData.map((score) => score.get({plain: true}));
     res.render('highscores', { highscores })  
+
   } catch (err) {
     res.json(err);
   }
 
 });
 
-  router.get('/roomOne', async (req, res) => {
-    // Send the rendered Handlebars.js template back as the response
-    res.render('roomOne');
-  });
+// Send the rendered Handlebars.js template back as the response
+router.get('/roomOne', async (req, res) => { 
+  res.render('roomOne');
+});
 
 
 module.exports = router;

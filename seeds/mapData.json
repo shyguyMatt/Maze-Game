@@ -1,8 +1,12 @@
 [
     {
-        "name": "maze_1"
+        "name": "maze_1",
+        "xstart": 1,
+        "ystart": 1
     },
     {
-        "name": "maze_2"
+        "name": "maze_2",
+        "xstart": 1,
+        "ystart": 1
     }
 ]

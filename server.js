@@ -16,8 +16,6 @@ const sess = {
   })
 };
 
-const exphbs = require('express-handlebars');
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -27,8 +25,11 @@ app.use(session(sess));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+// express middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// joins the path to public making it the root for the server
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
