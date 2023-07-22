@@ -15,6 +15,14 @@ Map.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        xstart: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        ystart: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     },
     {
         sequelize,
