@@ -5,21 +5,23 @@ const { User } = require('../../models');
 router.post('/login', async (req, res) => {
     try {
         // find user in database where email matches
-        const userData = await User.findOne({ where: { email: req.body.email } });
+        const userEmail = req.body.email;
+        const userData = await User.findOne({ where: { email: userEmail } });
 
         // if email does not match, return
         if (!userData) {
-            res.status(400).json({ message: 'Incorrect email or password, please try again' });
+            res.status(401).json({ message: 'Incorrect email or password, please try again' });
             return;
         }
 
 
         // check password against database
-        const validPassword = await userData.checkPassword(req.body.password);
+        const userPassword = req.body.password
+        const validPassword = await userData.checkPassword(userPassword);
 
         // if not match return
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect email or password, please try again' });
+            res.status(402).json({ message: 'Incorrect email or password, please try again' });
             return;
         }
         
@@ -32,7 +34,7 @@ router.post('/login', async (req, res) => {
         });
 
     } catch (err) {
-        res.status(400).json(err);
+        res.status(403).json(err);
     }
 });
 
