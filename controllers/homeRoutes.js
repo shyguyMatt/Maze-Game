@@ -38,5 +38,15 @@ router.get('/roomOne', async (req, res) => {
   res.render('roomOne');
 });
 
+  router.get('/enterGame', async (req, res) => {
+    // Send the rendered Handlebars.js template back as the response
+    res.render('enterGame');
+  });
+
+  router.get('/highScore', async (req, res) => {
+    // Send the rendered Handlebars.js template back as the response
+    res.render('highScore');
+  });
+
 
 module.exports = router;
