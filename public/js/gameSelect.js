@@ -9,3 +9,7 @@ const highscoreBtnHandler = async (event) => {
 
 const highscoreBtns = document.querySelectorAll(".highscoreBtn").forEach(btn => 
     btn.addEventListener('click', highscoreBtnHandler))
+
+
+const playBtn = document.querySelector(".playBtn")
+playBtn.addEventListener('click', timer()) 
