@@ -34,8 +34,5 @@
     "semi": ["error", "always"],
     "radix": "off"
   },
-  "extends": ["prettier" , 
-  "eslint:recommended" , 
-  "plugin:@typescript-eslint/recommended" , 
-  "plugin:prettier/recommended"]
+  "extends": ["prettier"]
 }
