@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const Highscore = require('../models/Highscore');
 const Map = require('../models/Map');
 const User = require('../models/User');
+const Tile = require('../models/Tile')
 
 // Send the rendered Handlebars.js template back as the response
 router.get('/', async (req, res) => {
@@ -37,15 +38,18 @@ router.get('/highscores/:id', async (req, res) => {
 });
 
 // Send the rendered Handlebars.js template back as the response
-router.get('/room/:id', async (req, res) => { 
+router.get('/room/', async (req, res) => { 
   try {
     const mapData = await Map.findOne({
-      where: { id: req.params.id}
+      where: { id: req.session.map},
+      include: {model: Tile, where: { x: req.session.x, y: req.session.y }}
     })
 
-    const Data = mapData.get({plain: true})
-    res.render('room', { Data });
+    // const Data = mapData.get({plain: true})
 
+    const newTile = mapData.tiles[0].get({plain: true})
+    res.render('room', { newTile });
+    // res.json(mapData.tiles[0])
   } catch (err) {
     res.status(400).json(err)
   }

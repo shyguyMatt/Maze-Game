@@ -22,9 +22,9 @@
         "x": 3,
         "y": 1,
         "north": true,
-        "east": true,
+        "east": false,
         "south": false,
-        "west": false
+        "west": true
     },
     {
         "map_id": 1,
