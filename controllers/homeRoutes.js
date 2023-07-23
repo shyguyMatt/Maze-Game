@@ -37,8 +37,18 @@ router.get('/highscores/:id', async (req, res) => {
 });
 
 // Send the rendered Handlebars.js template back as the response
-router.get('/roomOne', async (req, res) => { 
-  res.render('roomOne');
+router.get('/room/:id', async (req, res) => { 
+  try {
+    const mapData = await Map.findOne({
+      where: { id: req.params.id}
+    })
+
+    const Data = mapData.get({plain: true})
+    res.render('room', { Data });
+
+  } catch (err) {
+    res.status(400).json(err)
+  }
 });
 
   router.get('/enterGame', async (req, res) => {
