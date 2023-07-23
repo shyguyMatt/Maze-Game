@@ -6,14 +6,9 @@ const User = require('../models/User');
 const Tile = require('../models/Tile')
 
 // Send the rendered Handlebars.js template back as the response
-router.get('/', async (req, res) => {
+router.get('/login', async (req, res) => {
     res.render('login');
   });
-
-// Send the rendered signup.handlebars template back as the response
-router.get('/signup', async (req, res) => {
-  res.render('signup')
-});
 
 // Send the highscores for specific map id
 router.get('/highscores/:id', async (req, res) => {
@@ -55,20 +50,20 @@ router.get('/room/', async (req, res) => {
   }
 });
 
-  router.get('/enterGame', async (req, res) => {
+  router.get('/', async (req, res) => {
     // Send the rendered Handlebars.js template back as the response
     try {
       const mapData = await Map.findAll()
 
       const maps = mapData.map((map) => map.get({plain: true}));
-      res.render('enterGame', { maps })
+      res.render('mazeSelect', { maps })
     } catch (err) {
       res.json(err)
     }
     // res.render('enterGame');
   });
 
-  router.get('/highScore', async (req, res) => {
+  router.get('/highscores', async (req, res) => {
     // Send the rendered Handlebars.js template back as the response
     res.render('highScore');
   });

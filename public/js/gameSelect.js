@@ -4,7 +4,7 @@ const highscoreBtnHandler = async (event) => {
     const mapId = event.srcElement.attributes.maze_id.nodeValue
     console.log(mapId)
 
-    document.location.replace(`/highscores/${mapId}`)
+    document.location.href = `/highscores/${mapId}`;
 }
 
 const playBtnHandler = async (event) => {
@@ -27,7 +27,7 @@ const playBtnHandler = async (event) => {
     console.log(response)
 
     if (response.ok) {
-        document.location.replace(`/room`)
+        document.location.href = `/room`
     }
 }
 
