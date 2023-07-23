@@ -8,6 +8,7 @@
     "es2017": true
   },
   "rules": {
+    "prettier/prettier": "error",
     "no-undef-init": "error",
     "no-duplicate-case": "error",
     "no-empty": "error",
@@ -33,5 +34,8 @@
     "semi": ["error", "always"],
     "radix": "off"
   },
-  "extends": ["prettier"]
+  "extends": ["prettier" , 
+  "eslint:recommended" , 
+  "plugin:@typescript-eslint/recommended" , 
+  "plugin:prettier/recommended"]
 }
