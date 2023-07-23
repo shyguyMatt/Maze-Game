@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     saveButton.addEventListener("click", function () {
       const newPlayerData = {
-        name: newNameInput.value,
+        user_name: newNameInput.value,
         email: newEmailInput.value,
         password: newPasswordInput.value,
       };
