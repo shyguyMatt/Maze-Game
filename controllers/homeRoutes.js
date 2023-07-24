@@ -13,6 +13,7 @@ router.get('/login', async (req, res) => {
 
 // Send the highscores for specific map id
 router.get('/highscores/:id', async (req, res) => {
+  res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
   try {
     // find map by its id
     // include highscores along with their owners
@@ -38,6 +39,7 @@ router.get('/highscores/:id', async (req, res) => {
 
 // Send the rendered Handlebars.js template back as the response
 router.get('/room/', async (req, res) => { 
+  res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
   try {
     const mapData = await Map.findOne({
       where: { id: req.session.map},
@@ -56,6 +58,8 @@ router.get('/room/', async (req, res) => {
 
   router.get('/', async (req, res) => {
     // Send the rendered Handlebars.js template back as the response
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
+
     try {
       const mapData = await Map.findAll()
 
@@ -68,6 +72,8 @@ router.get('/room/', async (req, res) => {
   });
 
   router.get('/highscores', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
+
     // Send the rendered Handlebars.js template back as the response
     res.render('highScore');
   });

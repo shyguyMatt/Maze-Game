@@ -36,6 +36,7 @@ router.get('/getmaps', async (req, res) => {
 
 // moves tehe user north and returns new tile data
 router.post('/goNorth', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
         // searches the map for current tile
         const tile = await Map.findOne({ 
@@ -67,6 +68,7 @@ router.post('/goNorth', async (req, res) => {
 
 // moves the user east and returns new tile data
 router.post('/goEast', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
         // searches the map for current tile
         const tile = await Map.findOne({ 
@@ -99,6 +101,7 @@ router.post('/goEast', async (req, res) => {
 
 // moves the user south and returns new tile data
 router.post('/goSouth', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
         // searches the map for current tile
         const tile = await Map.findOne({ 
@@ -131,6 +134,7 @@ router.post('/goSouth', async (req, res) => {
 
 // moves the user west and returns new tile data
 router.post('/goWest', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
         // searches map for current tile
         const tile = await Map.findOne({ 
@@ -162,6 +166,7 @@ router.post('/goWest', async (req, res) => {
 });
 
 router.post('/finish', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     req.session.endTime = dayjs().valueOf();
 
     req.session.finalTime = req.session.endTime - req.session.startTime
@@ -169,6 +174,7 @@ router.post('/finish', async (req, res) => {
 });
 
 router.post('/savescore', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     await Highscore.create({
         score: req.session.finalTime,
         map_id: req.session.map,
@@ -178,12 +184,14 @@ router.post('/savescore', async (req, res) => {
 });
 
 router.post('/loginstatus', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     if (req.session.logged_in) res.status(200).json('logged in');
     else res.status(400).json('logged out');
 });
 
 // changes the current user map id and sets them to starting point
 router.post('/goToMap/:id', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
         const mapData = await Map.findByPk(req.params.id)
         
@@ -205,6 +213,7 @@ router.post('/goToMap/:id', async (req, res) => {
 });
 
 router.get('/getTile', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
         const tile = await Map.findOne({
             where: { id: req.session.map },

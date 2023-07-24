@@ -8,7 +8,9 @@ const hbs = require('express-handlebars').create({});
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
   secret: 'verysecretstring',
-  cookie: {},
+  cookie: {
+    maxAge: 300000
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
