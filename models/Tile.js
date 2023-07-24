@@ -43,6 +43,10 @@ Tile.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
+        event: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
     },
     {
         sequelize,

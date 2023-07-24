@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const dayjs = require('dayjs');
 const { Map, User, Highscore, Tile} = require('../../models');
 
 // FOR TESTING ONLY, REMOVE BEFORE LAUNCH
@@ -160,6 +161,13 @@ router.post('/goWest', async (req, res) => {
     }
 });
 
+router.post('/finish', async (req, res) => {
+    req.session.endTime = dayjs().valueOf();
+
+    req.session.finalTime = req.session.endTime - req.session.startTime
+    res.status(200).json(req.session.finalTime)
+})
+
 // changes the current user map id and sets them to starting point
 router.post('/goToMap/:id', async (req, res) => {
     try {
@@ -170,6 +178,9 @@ router.post('/goToMap/:id', async (req, res) => {
             req.session.x = mapData.xstart;
             req.session.y = mapData.ystart;
             req.session.map = req.params.id;
+            req.session.startTime = dayjs().valueOf();
+            req.session.endTime
+            req.session.finalTime
 
             res.json({ message: 'Updated map successfully!' })
         })
@@ -177,6 +188,20 @@ router.post('/goToMap/:id', async (req, res) => {
     } catch (err) {
         res.status(400).json(err);
     }
+});
+
+router.get('/getTile', async (req, res) => {
+    try {
+        const tile = await Map.findOne({
+            where: { id: req.session.map },
+            include: {model: Tile, where: { x: req.session.x, y: req.session.y }}
+        })
+
+        res.status(200).json(tile)        
+    } catch (err) {
+        res.status(400).json(err)
+    }
+
 })
 
 module.exports = router;

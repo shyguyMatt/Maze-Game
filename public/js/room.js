@@ -1,3 +1,27 @@
+const getEvent = async () => {
+  tile = await fetch('/api/getTile', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json'}
+  }).then( function (tile) {
+    return tile.json()
+  }).then( function (tile) {
+    let tileEvent = tile.tiles[0].event
+    return tileEvent
+  }).then( function (tileEvent) {
+    if (!tileEvent) return;
+
+    playEvent(tileEvent)
+  });
+}
+
+const playEvent = async (tileEvent) => {
+  console.log(tileEvent);
+  await fetch(`/api/${tileEvent}`,{
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'}
+  })
+}
+
 const goNorthHandler = async (event) => {
     console.log('go north')
 
@@ -57,6 +81,8 @@ const goWestHandler = async (event) => {
     });
     document.location.reload();
   };
+
+getEvent();
 
 try {
     document.querySelector('#northBtn')

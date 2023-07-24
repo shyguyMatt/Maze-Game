@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
+const dayjs = require('dayjs');
 const Highscore = require('../models/Highscore');
 const Map = require('../models/Map');
 const User = require('../models/User');
@@ -23,6 +24,8 @@ router.get('/highscores/:id', async (req, res) => {
 
     // map highscores and send them to highscores.handlebars template
     const highscores = scoreData.highscores.map((score) => score.get({plain: true}));
+
+    highscores.map((score) => score.score = dayjs(score.score).format('h:mm:ss.SSS')) 
     // res.json(highscores)
     res.render('highScore', { highscores })  
 

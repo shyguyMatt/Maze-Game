@@ -12,7 +12,7 @@ Highscore.init(
             primaryKey: true,
         },
         score: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.BIGINT,
             allowNull: false,
         },
         map_id: {
