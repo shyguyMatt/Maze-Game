@@ -3,6 +3,7 @@ const { User } = require('../../models');
 
 // User login route takes email and password as input
 router.post('/login', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
         // find user in database where email matches
         const userEmail = req.body.email;
@@ -40,6 +41,7 @@ router.post('/login', async (req, res) => {
 
 // creates a new user takes name, email, and password as input
 router.post('/newuser', async (req, res) => {
+    res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})
     try {
 
         // checks database for existing email
