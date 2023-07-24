@@ -14,7 +14,7 @@ const loginBtnHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/enterGame');
+        document.location.href =  '/';
         alert('successfully logged in')
       } else {
         alert('Failed to log in');

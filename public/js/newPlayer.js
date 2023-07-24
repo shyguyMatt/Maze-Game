@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     saveButton.addEventListener("click", function () {
       const newPlayerData = {
-        name: newNameInput.value,
+        user_name: newNameInput.value,
         email: newEmailInput.value,
         password: newPasswordInput.value,
       };
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((json) => {
           console.log("New player created:", json);
+          document.location.href = '/';
         })
         .catch((error) => {
           console.error("Error:", error);

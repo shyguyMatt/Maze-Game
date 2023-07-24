@@ -1,0 +1,71 @@
+<div class="container is-flex is-flex-wrap-nowrap is-justify-content-space-around">
+    <div class="column"></div>
+    <div class="column is-8 tile is-ancestor">
+        <div class="tile is-4 is-vertical is-parent">
+            <div class="tile box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+
+            {{#if newTile.west}}
+            <div id="westBtn" class="title box is-child">
+                <img class="is-fullwidth" src='/images/green_block.png'>
+            </div>
+            {{else}}
+            <div class="title box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+            {{/if}}
+
+            <div class="tile box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+        </div>
+        <div class="tile is-4 is-vertical is-parent">
+            {{#if newTile.north}}
+            <div id="northBtn" class="title box is-child">
+                <img class="is-fullwidth" src='/images/green_block.png'>
+            </div>
+            {{else}}
+            <div class="title box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+            {{/if}}
+
+            <div class="tile box is-child">
+                <img class="is-fullwidth" src='/images/green_block.png'>
+            </div>
+
+            {{#if newTile.south}}
+            <div id="southBtn" class="title box is-child">
+                <img class="is-fullwidth" src='/images/green_block.png'>
+            </div>
+            {{else}}
+            <div class="title box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+            {{/if}}
+        </div>
+        <div class="tile is-4 is-vertical is-parent">
+            <div class="tile box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+
+            {{#if newTile.east}}
+            <div id="eastBtn" class="title box is-child">
+                <img class="is-fullwidth" src='/images/green_block.png'>
+            </div>
+            {{else}}
+            <div class="title box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+            {{/if}}
+
+            <div class="tile box is-child">
+                <img class="is-fullwidth" src='/images/red_block.png'>
+            </div>
+        </div>
+    </div>
+    <div class="column"></div>
+    <script src="/js/room.js"></script>
+
+</div>

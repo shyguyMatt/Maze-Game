@@ -22,9 +22,9 @@
         "x": 3,
         "y": 1,
         "north": true,
-        "east": true,
+        "east": false,
         "south": false,
-        "west": false
+        "west": true
     },
     {
         "map_id": 1,
@@ -78,6 +78,7 @@
         "north": false,
         "east": false,
         "south": true,
-        "west": true
+        "west": true,
+        "event": "finish"
     }
 ]
