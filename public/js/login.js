@@ -39,6 +39,7 @@ const signupHandler = async (event) => {
   })
 
   if (response.ok) {
+    fetchLoginStatus();
     document.querySelector('#signupModal').classList.remove('is-active')
   }
 }
