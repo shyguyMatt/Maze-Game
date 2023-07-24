@@ -79,7 +79,7 @@ router.post('/newuser', async (req, res) => {
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
-            res.status(200).json({ message: 'Successfully logged out!'}).end();
+            res.status(204).json({ message: 'Successfully logged out!'}).end();
         });
         
     } else {

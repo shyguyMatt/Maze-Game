@@ -165,8 +165,22 @@ router.post('/finish', async (req, res) => {
     req.session.endTime = dayjs().valueOf();
 
     req.session.finalTime = req.session.endTime - req.session.startTime
-    res.status(200).json(req.session.finalTime)
-})
+    res.status(200).json({ time: req.session.finalTime, login: req.session.logged_in })
+});
+
+router.post('/savescore', async (req, res) => {
+    await Highscore.create({
+        score: req.session.finalTime,
+        map_id: req.session.map,
+        user_id: req.session.user_id
+    });
+    res.status(200).json('score save successfully');
+});
+
+router.post('/loginstatus', async (req, res) => {
+    if (req.session.logged_in) res.status(200).json('logged in');
+    else res.status(400).json('logged out');
+});
 
 // changes the current user map id and sets them to starting point
 router.post('/goToMap/:id', async (req, res) => {

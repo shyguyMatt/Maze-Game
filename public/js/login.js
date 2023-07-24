@@ -16,6 +16,7 @@ const loginHandler = async (event) => {
         document.querySelector('#loginModal').classList.remove('is-active')
         document.querySelector('#loginEmail').value = '';
         document.querySelector('#loginPassword').value = '';
+        fetchLoginStatus();
       } else {
         alert('Failed to log in');
       }
