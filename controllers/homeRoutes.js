@@ -25,7 +25,7 @@ router.get('/highscores/:id', async (req, res) => {
     // map highscores and send them to highscores.handlebars template
     const highscores = scoreData.highscores.map((score) => score.get({plain: true}));
 
-    highscores.map((score) => score.score = dayjs(score.score).format('h:mm:ss.SSS')) 
+    highscores.map((score) => score.score = dayjs(score.score).format('mm:ss.SSS')) 
     // res.json(highscores)
     res.render('highScore', { highscores })  
 
