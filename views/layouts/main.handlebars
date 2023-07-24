@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
 </head>
 
 <body>
@@ -43,7 +44,6 @@
         </div>
       </div>
     </nav>
-    <script src="/js/navbar.js"></script>
   </div>
 
   {{!-- Save HighScores Modal --}}
@@ -62,7 +62,7 @@
         {{!-- Modal Header --}}
         <header class="modal-card-head">
           <p class="modal-card-title">Login</p>
-          <button class="delete" aira-label="close"></button>
+          <button class="delete loginCancel" aira-label="close"></button>
         </header>
 
         {{!-- Modal Content --}}
@@ -88,14 +88,14 @@
           </div>
 
           {{!-- Create User Link --}}
-          <a style="color: blue; text-decoration:underline">Don't have an account yet?</a>
+          <a id="signupLink" style="color: blue; text-decoration:underline">Don't have an account yet?</a>
 
         </section>
 
       {{!-- Modal Footer --}}
       <footer class="modal-card-foot">
-        <button id="loginBtn" class="button is-success">Login</button>
-        <button id="loginCancel" class="button is-success">Cancel</button>
+        <button id="loginBtn" class="button is-success" type="submit">Login</button>
+        <button class="button is-success loginCancel" type="cancel">Cancel</button>
       </footer>
       </div>
     </div>
@@ -107,7 +107,7 @@
         {{!-- Modal Header --}}
         <header class="modal-card-head">
           <p class="modal-card-title">Sign Up</p>
-          <button class="delete" aria-label="close"></button>
+          <button class="delete signupCancel" aria-label="close"></button>
         </header>
 
         {{!-- Modal Content --}}
@@ -115,7 +115,7 @@
           {{!-- Name Input --}}
           <div class="field">
             <p class="control has-icons-left">
-              <input id="signupName" class="input" type="text" placeholder="Name">
+              <input id="signupName" class="input" type="text" placeholder="User_Name">
               <span class="icon is-small is-left">
                 <i class="fa-solid fa-user"></i>
               </span>
@@ -143,7 +143,7 @@
           </div>
 
           {{!-- Login User Link --}}
-          <a style="color: blue; text-decoration:underline">Don't have an account yet?</a>
+          <a id="loginLink" style="color: blue; text-decoration:underline">Already have an account?</a>
 
 
         </section>
@@ -151,11 +151,12 @@
         {{!-- Modal Footer --}}
         <footer class="modal-card-foot">
           <button id="signupBtn" class="button is-success">Sign Up</button>
-          <button id="signupCancel" class="button is-success">Cancel</button>
+          <button class="button is-success signupCancel">Cancel</button>
         </footer>
       </div>
     </div>
-
+  <script src="/js/navbar.js"></script>
+  <script src="/js/login.js"></script>
   </main>
         {{{body}}}
 </body>
