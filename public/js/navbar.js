@@ -1,5 +1,5 @@
 const loginNavBtnHandler = async (event) => {
-      document.location.href = '/login'
+      document.querySelector('#loginModal').classList.add('is-active')
 };
 
 const homeNavBtnHandler = async (event) => {
