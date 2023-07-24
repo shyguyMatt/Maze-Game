@@ -10,18 +10,32 @@ const getEvent = async () => {
   }).then( function (tileEvent) {
     if (!tileEvent) return;
 
-    playEvent(tileEvent)
+    switch (tileEvent) {
+      case 'finish':
+        playFinish();
+        break;
+    }
   });
 }
-
-const playEvent = async (tileEvent) => {
-  console.log(tileEvent);
-  await fetch(`/api/${tileEvent}`,{
+// Events 
+  //Finish Line Event
+const playFinish = async (tileEvent) => {
+  await fetch(`/api/finish`,{
     method: 'POST',
     headers: { 'Content-Type': 'application/json'}
+  }).then((response) => {
+      return response.json()
+  }).then((response) => {
+    document.querySelector('#finalTime').textContent = dayjs(response.time).format('mm:ss.SSS')
   })
+
+  fetchLoginStatus();
+  document.querySelector('#save-loginBtn').attributes.disable.nodeValue = "false"
+  document.querySelector('#highscoreModal').classList.add('is-active');
 }
 
+// Movement Handlers
+  // North Handler
 const goNorthHandler = async (event) => {
     console.log('go north')
 
@@ -37,6 +51,7 @@ const goNorthHandler = async (event) => {
     document.location.reload();
   };
 
+  // East Handler
 const goEastHandler = async (event) => {
     console.log('go east')
 
@@ -52,6 +67,7 @@ const goEastHandler = async (event) => {
     document.location.reload();
   };
 
+  // South Handler
 const goSouthHandler = async (event) => {
     console.log('go south')
 
@@ -67,6 +83,7 @@ const goSouthHandler = async (event) => {
     document.location.reload();
   };
 
+  // West Handler
 const goWestHandler = async (event) => {
     console.log('go west')
 
@@ -82,32 +99,56 @@ const goWestHandler = async (event) => {
     document.location.reload();
   };
 
+
+const saveHighscore = async () => {
+    document.querySelector('#save-loginBtn').classList.add('is-loading')
+    document.querySelector('#save-loginBtn').attributes.disable.nodeValue = "true";
+    await fetch('/api/savescore', {
+      method: 'POST',
+    })
+
+    document.querySelector('#save-loginBtn').classList.remove('is-loading')
+    document.querySelector('#save-loginBtn').textContent = 'Score Saved!'
+}
+
 getEvent();
 
 try {
     document.querySelector('#northBtn')
-            .addEventListener('click', goNorthHandler);    
+            .addEventListener('click', goNorthHandler);
 } catch(err) {
 
 }
 
 try {
     document.querySelector('#eastBtn')
-            .addEventListener('click', goEastHandler);    
+            .addEventListener('click', goEastHandler);
 } catch(err) {
     
 }
 
 try {
     document.querySelector('#southBtn')
-            .addEventListener('click', goSouthHandler);    
+            .addEventListener('click', goSouthHandler);
 } catch(err) {
     
 }
 
 try {
     document.querySelector('#westBtn')
-            .addEventListener('click', goWestHandler);    
+            .addEventListener('click', goWestHandler);
 } catch(err) {
     
 }
+
+document.querySelector('#save-loginBtn')
+        .addEventListener('click', function() {
+          if (document.querySelector('#save-loginBtn').attributes.disable.nodeValue == "true") return;
+          if (document.querySelector('#save-loginBtn').attributes.loginstatus.nodeValue == "true") saveHighscore();
+          else loginNavBtnHandler()
+        })
+
+document.querySelector('#highscoreReturnBtn')
+        .addEventListener('click', function() {
+          document.location.replace('/');
+        })

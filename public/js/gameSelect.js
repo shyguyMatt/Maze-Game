@@ -9,7 +9,7 @@ const highscoreBtnHandler = async (event) => {
 
 const playBtnHandler = async (event) => {
     event.preventDefault();
-    timer()
+    // timer()
 
     const mapId = event.srcElement.attributes.maze_id.nodeValue
     console.log(mapId)
