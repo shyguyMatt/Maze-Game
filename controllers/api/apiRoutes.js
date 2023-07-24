@@ -2,38 +2,6 @@ const router = require('express').Router();
 const dayjs = require('dayjs');
 const { Map, User, Highscore, Tile} = require('../../models');
 
-// FOR TESTING ONLY, REMOVE BEFORE LAUNCH
-router.get('/users', async (req, res) => {
-    try {
-        const userData = await User.findAll();
-        res.json(userData);
-    } catch (err) {
-        res.json(err)
-    }
-})
-
-// FOR TESTING ONLY, REMOVE BEFORE LAUNCH
-router.get('/currentuser', async (req, res) => {
-    try {
-        const userData = await User.findByPk(req.session.user_id)
-        res.json(userData)
-    } catch (err) {
-        res.status(400).json(err)
-    }
-})
-
-// FOR TESTING ONLY, REMOVE BEFORE LAUNCH
-router.get('/getmaps', async (req, res) => {
-    try {
-        const mapData = await Map.findAll({
-            include: [{model: Tile}, {model: Highscore, include: { model: User, attributes: ['user_name']}}]
-        });
-        res.json(mapData);
-    } catch (err) {
-        res.json(err)
-    }
-});
-
 // moves tehe user north and returns new tile data
 router.post('/goNorth', async (req, res) => {
     res.cookie('user', 1, { expires: new Date(Number(new Date()) + 300000)})

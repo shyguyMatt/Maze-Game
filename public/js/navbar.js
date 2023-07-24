@@ -30,7 +30,7 @@ const homeNavBtnHandler = async (event) => {
 };
 
 const highscoreNavBtnHandler = async (event) => {
-      document.location.href = '/highscores'
+      document.location.href = '/highscores/1'
 };
 
 const logoutNavBtnHandler = async () => {
